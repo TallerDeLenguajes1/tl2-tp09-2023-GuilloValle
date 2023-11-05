@@ -92,7 +92,7 @@ public class UsuarioRepository : IUsuarioRepository
             {
                 SQLiteCommand command = connection.CreateCommand();
                 // usar AddParameter
-                command.CommandText = $"UPDATE Usuario SET Nombre_de_usuario = @nombreDeUsuario WHERE id = @idAActualizar;";
+                command.CommandText = $"UPDATE FROM Usuario SET Nombre_de_usuario = @nombreDeUsuario  WHERE id = @idAActualizar;";
                 command.Parameters.Add(new SQLiteParameter("@idAActualizar",id));
                 command.Parameters.Add(new SQLiteParameter("@nombreDeUsuario",usuario.NombreDeUsuario));     
                 connection.Open();

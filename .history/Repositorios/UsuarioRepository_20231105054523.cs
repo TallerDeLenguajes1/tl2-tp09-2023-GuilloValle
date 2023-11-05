@@ -71,34 +71,21 @@ public class UsuarioRepository : IUsuarioRepository
             }
     }
 
-    public void EliminarUsuario(int id){          
-           // usar using
+    public void EliminarUsuario(int id){
+
+            
+             // usar using
             using( SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
             {
                 SQLiteCommand command = connection.CreateCommand();
                 // usar AddParameter
-                command.CommandText = $"DELETE FROM Usuario WHERE id = @idAeliminar;";
+                command.CommandText = $"DELETE FROM directors WHERE id = @idAeliminar;";
                 command.Parameters.Add(new SQLiteParameter("@idAeliminar",id ));    
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
             }
             
-    }
-
-    public void ModificarUsuario(int id,Usuario usuario){
-
-         using( SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
-            {
-                SQLiteCommand command = connection.CreateCommand();
-                // usar AddParameter
-                command.CommandText = $"UPDATE Usuario SET Nombre_de_usuario = @nombreDeUsuario WHERE id = @idAActualizar;";
-                command.Parameters.Add(new SQLiteParameter("@idAActualizar",id));
-                command.Parameters.Add(new SQLiteParameter("@nombreDeUsuario",usuario.NombreDeUsuario));     
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
     }
 
 }

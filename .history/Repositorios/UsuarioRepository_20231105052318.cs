@@ -60,7 +60,6 @@ public class UsuarioRepository : IUsuarioRepository
 
                 connection.Open();
                 var command = new SQLiteCommand(query, connection);
-                //SQLiteCommand command = connection.CreateCommand(); Por que no puedo usar esta linea en bez de la de arriba, linea 62, como uso en ObtenerUsuarioPorId???
 
                 command.Parameters.Add(new SQLiteParameter("@id", usuario.Id));
                 command.Parameters.Add(new SQLiteParameter("@Nombre_de_usuario", usuario.NombreDeUsuario));
@@ -71,34 +70,20 @@ public class UsuarioRepository : IUsuarioRepository
             }
     }
 
-    public void EliminarUsuario(int id){          
-           // usar using
-            using( SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
+    public void EliminarUsuario(int id){
+
+            command.CommandText = $"DELETE FROM directors WHERE id = '{id}';";
+             // usar using
+            using( SQLiteConnection connection = new SQLiteConnection(cadenaConexion);)
             {
                 SQLiteCommand command = connection.CreateCommand();
                 // usar AddParameter
-                command.CommandText = $"DELETE FROM Usuario WHERE id = @idAeliminar;";
-                command.Parameters.Add(new SQLiteParameter("@idAeliminar",id ));    
+                
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
             }
             
-    }
-
-    public void ModificarUsuario(int id,Usuario usuario){
-
-         using( SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
-            {
-                SQLiteCommand command = connection.CreateCommand();
-                // usar AddParameter
-                command.CommandText = $"UPDATE Usuario SET Nombre_de_usuario = @nombreDeUsuario WHERE id = @idAActualizar;";
-                command.Parameters.Add(new SQLiteParameter("@idAActualizar",id));
-                command.Parameters.Add(new SQLiteParameter("@nombreDeUsuario",usuario.NombreDeUsuario));     
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
     }
 
 }
