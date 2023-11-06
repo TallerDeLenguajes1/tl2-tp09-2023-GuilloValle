@@ -157,20 +157,5 @@ public class TareasRepository : ItareasRepository
             }
     }
 
-     public void EliminarTarea(int id){          
-           // usar using
-            using( SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
-            {
-                SQLiteCommand command = connection.CreateCommand();
-                // usar AddParameter
-                command.CommandText = $"DELETE FROM Tareas WHERE id = @idAeliminar;";
-                command.Parameters.Add(new SQLiteParameter("@idAeliminar",id));    
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
-            
-    }
-
 
 }

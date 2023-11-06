@@ -105,15 +105,8 @@ public class ControllerKanban : ControllerBase
 
     [HttpPut("/api/Tarea/{id}/Estado/{estado}")]
 
-    public ActionResult cambiarEstadoTarea(int id,estado estado){ 
+    public ActionResult<Tarea> cambiarEstadoTarea(int id,estado estado){
         tareaRepositorio.ModificarEstadoDeTarea(id,estado);
-        return Ok();
-    }
-
-    [HttpDelete("/api/Tarea/{id}")]
-
-    public ActionResult eliminarTareaPorId(int id){
-        tareaRepositorio.EliminarTarea(id);
         return Ok();
     }
 }

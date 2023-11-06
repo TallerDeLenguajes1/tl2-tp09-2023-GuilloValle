@@ -111,65 +111,12 @@ public class TareasRepository : ItareasRepository
                 command.Parameters.Add(new SQLiteParameter("@estado", tarea.Estado));
                 command.Parameters.Add(new SQLiteParameter("@Descp", tarea.Descripcion));
                 command.Parameters.Add(new SQLiteParameter("@color", tarea.Color));
-                command.Parameters.Add(new SQLiteParameter("@id_usu_asignado", tarea.IdUsuarioAsingnado));
 
                 command.ExecuteNonQuery();
 
                 connection.Close();   
             }
         
-    }
-
-    public void ModificarTarea(int id,Tarea tarea){
-
-         using( SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
-            {
-                SQLiteCommand command = connection.CreateCommand();
-                // usar AddParameter
-                command.CommandText = $"UPDATE Tareas SET id_tablero = @id_tablero, Nombre = @nombre, estado = @estado, descripcion = @Descp, color = @color, id_usuario_asignado = @id_usu_asignado  WHERE id = @idAActualizar;";
-                command.Parameters.Add(new SQLiteParameter("@idAActualizar",id));
-                command.Parameters.Add(new SQLiteParameter("@id_tablero", tarea.IdTablero));
-                command.Parameters.Add(new SQLiteParameter("@nombre", tarea.Nombre));
-                command.Parameters.Add(new SQLiteParameter("@estado", tarea.Estado));
-                command.Parameters.Add(new SQLiteParameter("@Descp", tarea.Descripcion));
-                command.Parameters.Add(new SQLiteParameter("@color", tarea.Color));
-                command.Parameters.Add(new SQLiteParameter("@id_usu_asignado", tarea.IdUsuarioAsingnado));
-                     
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
-    }
-
-     public void ModificarEstadoDeTarea(int id,estado nuevoEstado){
-
-         using( SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
-            {
-                SQLiteCommand command = connection.CreateCommand();
-                // usar AddParameter
-                command.CommandText = $"UPDATE Tareas SET estado = @nuevoEstado  WHERE id = @idAActualizar;";
-                command.Parameters.Add(new SQLiteParameter("@idAActualizar",id));
-                command.Parameters.Add(new SQLiteParameter("@nuevoEstado", (int)nuevoEstado));
-                     
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
-    }
-
-     public void EliminarTarea(int id){          
-           // usar using
-            using( SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
-            {
-                SQLiteCommand command = connection.CreateCommand();
-                // usar AddParameter
-                command.CommandText = $"DELETE FROM Tareas WHERE id = @idAeliminar;";
-                command.Parameters.Add(new SQLiteParameter("@idAeliminar",id));    
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
-            
     }
 
 

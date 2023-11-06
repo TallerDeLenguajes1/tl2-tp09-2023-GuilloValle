@@ -141,36 +141,5 @@ public class TareasRepository : ItareasRepository
             }
     }
 
-     public void ModificarEstadoDeTarea(int id,estado nuevoEstado){
-
-         using( SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
-            {
-                SQLiteCommand command = connection.CreateCommand();
-                // usar AddParameter
-                command.CommandText = $"UPDATE Tareas SET estado = @nuevoEstado  WHERE id = @idAActualizar;";
-                command.Parameters.Add(new SQLiteParameter("@idAActualizar",id));
-                command.Parameters.Add(new SQLiteParameter("@nuevoEstado", (int)nuevoEstado));
-                     
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
-    }
-
-     public void EliminarTarea(int id){          
-           // usar using
-            using( SQLiteConnection connection = new SQLiteConnection(cadenaConexion))
-            {
-                SQLiteCommand command = connection.CreateCommand();
-                // usar AddParameter
-                command.CommandText = $"DELETE FROM Tareas WHERE id = @idAeliminar;";
-                command.Parameters.Add(new SQLiteParameter("@idAeliminar",id));    
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
-            
-    }
-
 
 }

@@ -109,11 +109,4 @@ public class ControllerKanban : ControllerBase
         tareaRepositorio.ModificarEstadoDeTarea(id,estado);
         return Ok();
     }
-
-    [HttpDelete("/api/Tarea/{id}")]
-
-    public ActionResult eliminarTareaPorId(int id){
-        tareaRepositorio.EliminarTarea(id);
-        return Ok();
-    }
 }

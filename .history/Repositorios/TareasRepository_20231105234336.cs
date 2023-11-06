@@ -163,8 +163,8 @@ public class TareasRepository : ItareasRepository
             {
                 SQLiteCommand command = connection.CreateCommand();
                 // usar AddParameter
-                command.CommandText = $"DELETE FROM Tareas WHERE id = @idAeliminar;";
-                command.Parameters.Add(new SQLiteParameter("@idAeliminar",id));    
+                command.CommandText = $"DELETE FROM Usuario WHERE id = @idAeliminar;";
+                command.Parameters.Add(new SQLiteParameter("@idAeliminar",id ));    
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
